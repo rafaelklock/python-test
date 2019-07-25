@@ -7,4 +7,3 @@ print(f"Imposto: {imposto * salario}")
 
 
 
-
