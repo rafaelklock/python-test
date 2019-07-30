@@ -1,5 +1,4 @@
 # coding: utf-8
-
 import io
 import sys
 import urllib.request as request
@@ -14,6 +13,7 @@ def download_length(response, output, length):
         output.write(response.read(BUFF_SIZE))
         print("Download {}".format((((time * BUFF_SIZE)/length)*100)))
 
+
 def download(response, output):
     total_downloaded = 0
     while True:
@@ -21,4 +21,23 @@ def download(response, output):
         total_downloaded += len(data)
         if not data:
             break
-            
+        output.write(data)
+        print('Download {bytes}'.format(bytes=total_downloaded))
+
+def main():
+    response = request.urlopen(sys.argv[1])
+    out_file = io.FileIO("saida.zip", mode="w")
+
+    content_length = response.getheader('Content_length')
+    if content_length:
+        length = int(content_length)
+        download_length(response, out_file, length)
+    else:
+        download(response, out_file)
+    
+    response.close()
+    out_file.close()
+    print("Finished")
+
+if __name__ == "__main__":
+    main()
