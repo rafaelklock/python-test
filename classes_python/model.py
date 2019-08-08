@@ -33,18 +33,16 @@ class Column:
         self._name = name
         self._kind = kind
         self._description = description
+        self._is_pk = False
+
+    def __str__(self):
+        _str = "Col: {} : {} {}".format(self._name,
+                                        self._kind,
+                                        self._description)
+        return _str
 
 
-class Retangulo:
-    def __init__(self, altura, largura):
-        self.largura = largura
-        self.altura = altura
-
-    def calc_area(self):
-        return self.altura * self.largura
-
-
-if __name__ == '__main__':
-    retangulo1 = Retangulo(10, 20)
-    area = retangulo1.calc_area()
-    print(area)
+class PrimaryKey(Column):
+    def __init__(self, table, name, kind, description=""):
+        super().__init__(name, kind, description=description)
+        self._is_pk = True
