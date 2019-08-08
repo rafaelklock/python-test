@@ -1,6 +1,1 @@
-python-test
-
-Tuplas -> não permite alteracao de valores
-Listas -> permite alteracoes de valores
-
-
+Estes são alguns programas feitos em Python para fins de testes e aprendizado. 
