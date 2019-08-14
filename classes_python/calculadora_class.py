@@ -4,6 +4,7 @@ Classe que faz alguns calculos em python
 
 from math import pi
 
+
 class Calculadora:
 
     def soma(self, a, b):

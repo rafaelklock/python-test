@@ -1,3 +1,6 @@
+from decimal import Decimal
+
+
 class Relationship:
     def __init__(self, name, _from, to, on):
         self._name = name
@@ -41,8 +44,26 @@ class Column:
                                         self._description)
         return _str
 
+    def validate(self, data):
+        if self._kind == 'bigint':
+            if isinstance(data, int):
+                return True
+            else:
+                return False
+        elif self._kind == 'varchar':
+            if isinstance(data, str):
+                return True
+            return False
+        elif self._kind == 'numeric':
+            try:
+                val = Decimal(data)
+            except:
+                return False
+            return True
 
 class PrimaryKey(Column):
     def __init__(self, table, name, kind, description=""):
         super().__init__(name, kind, description=description)
         self._is_pk = True
+
+
